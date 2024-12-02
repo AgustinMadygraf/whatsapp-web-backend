@@ -20,10 +20,14 @@ export const addRooms = async (req, res) => {
 
 export const getRooms = async (req, res) => {
   try {
-    const rooms = await Rooms.find();
+    const rooms = await Rooms.findAll();
+    if (rooms.length === 0) {
+      return res.status(200).json({ message: "No rooms found" });
+    }
     res.status(200).json(rooms);
   } catch (error) {
-    res.status(500).json(error);
+    console.error("Error fetching rooms:", error);
+    res.status(500).json({ error: "Error fetching rooms" });
   }
 };
 
