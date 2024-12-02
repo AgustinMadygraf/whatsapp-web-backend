@@ -16,6 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 3030;
 
 // Middleware
+app.use("/posts", route);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
@@ -30,10 +31,10 @@ const pusher = new Pusher({
 });
 
 // Test database connection
-sequelize.sync()
+sequelize.sync({ force: false })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server started at http://localhost:${PORT}`);
     });
   })
-  .catch(err => console.log('Error: ' + err));
+  .catch(err => console.error("Error syncing the database:", err));

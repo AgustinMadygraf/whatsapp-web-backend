@@ -8,10 +8,10 @@ import * as controller from "../controller/controller.js";
 
 const route = express.Router();
 
-route.post("/room", controller.addRooms);
-route.post("/room/:id", controller.addMessages)
-route.get("/room", controller.getRooms);
-route.get("/room/:id", controller.getSingleRoom);
+route.post("/posts/room", controller.addRooms);
+route.post("/posts/room/:id", controller.addMessages)
+route.get("/posts/room", controller.getRooms);
+route.get("/posts/room/:id", controller.getSingleRoom);
 
 
 
