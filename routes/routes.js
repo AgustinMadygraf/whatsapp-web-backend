@@ -1,3 +1,8 @@
+/*
+Path: routes/routes.js
+Este archivo es el encargado de definir las rutas de la aplicación.
+*/
+
 import express from "express";
 import * as controller from "../controller/controller.js";
 

@@ -1,6 +1,10 @@
+/*
+Path: controller/controller.js
+Este archivo es el encargado de manejar la lógica de la aplicación.
+*/
+
 import Rooms from "../model/schema.js";
 import mongoose from "mongoose";
-import { db } from "../database/database.js";
 const { Types } = mongoose;
 
 export const addRooms = async (req, res) => {

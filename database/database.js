@@ -1,12 +1,19 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+/*
+Path: database/database.js
+Este archivo es el encargado de la conexión con la base de datos.
+*/
+
+import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
+export const sequelize = new Sequelize(DATABASE_URL, {
+  dialect: 'mysql',
+});
 
-export const db = mongoose
-  .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("db connected"))
-  .catch((error) => console.log(error));
+sequelize.authenticate()
+  .then(() => console.log('Database connected'))
+  .catch(err => console.log('Error: ' + err));

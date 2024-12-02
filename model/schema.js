@@ -1,3 +1,8 @@
+/*
+Path: model/schema.js
+Este archivo es el encargado de definir el esquema de la base de datos.
+*/
+
 import mongoose from "mongoose";
 
 const whatsappSchema = mongoose.Schema({
