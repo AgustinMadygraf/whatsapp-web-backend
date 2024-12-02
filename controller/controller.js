@@ -9,12 +9,12 @@ const { Types } = mongoose;
 
 export const addRooms = async (req, res) => {
   try {
-    const roomName = req.body;
-    const room = Rooms(roomName);
-    await room.save();
+    const roomName = req.body; // Debería ser un objeto JSON con el campo "name"
+    const room = await Rooms.create(roomName); // Usar Sequelize para crear la sala
     res.status(201).json(room);
   } catch (error) {
-    res.status(500).json(error);
+    console.error("Error adding room:", error);
+    res.status(500).json({ error: "Error adding room" });
   }
 };
 
@@ -22,7 +22,7 @@ export const getRooms = async (req, res) => {
   try {
     const rooms = await Rooms.findAll();
     if (rooms.length === 0) {
-      return res.status(200).json({ message: "No rooms found" });
+      return res.status(200).json({ message: "No rooms available. Please add one to get started!" });
     }
     res.status(200).json(rooms);
   } catch (error) {
