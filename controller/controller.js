@@ -9,8 +9,12 @@ const { Types } = mongoose;
 
 export const addRooms = async (req, res) => {
   try {
-    const roomName = req.body; // Debería ser un objeto JSON con el campo "name"
-    const room = await Rooms.create(roomName); // Usar Sequelize para crear la sala
+    console.log("Request Body:", req.body);
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ error: "Room name is required" });
+    }
+    const room = await Rooms.create({ name });
     res.status(201).json(room);
   } catch (error) {
     console.error("Error adding room:", error);

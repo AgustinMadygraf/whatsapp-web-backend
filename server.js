@@ -16,10 +16,10 @@ const app = express();
 const PORT = process.env.PORT || 3030;
 
 // Middleware
-app.use("/posts", route);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use("/posts", route);
 
 // Pusher config
 const pusher = new Pusher({
