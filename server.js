@@ -38,3 +38,9 @@ sequelize.sync({ force: false })
     });
   })
   .catch(err => console.error("Error syncing the database:", err));
+
+  app.use((req, res, next) => {
+    console.log(`Solicitud recibida: ${req.method} ${req.url}`);
+    next();
+  });
+  
